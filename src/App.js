@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Menu from './components/menu';
+import Navbar from './components/navbar';
+import Carousel from './components/carousel';
+import {
+    Chart,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+
+Chart.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App row">
+            <Menu />
+            <div className="col dashboards-col">
+                <Navbar />
+                <Carousel />
+            </div>
+        </div>
+    );
 }
 
 export default App;

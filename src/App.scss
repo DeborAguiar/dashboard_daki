@@ -1,0 +1,27 @@
+/* #region Variaveis */
+/* https: //coolors.co/1759ff-ffc300-ffffff */
+$blue: #1759FF;
+$yellow:#FFC300;
+$grey: #f0f0f0;
+/* #endregion */
+
+/* #region debug */
+.coluna {
+  border: 1px dotted red;
+}
+
+div.debug {
+  background-color: red;
+}
+
+/* #endregion */
+
+.App{
+  width: 100vw;
+  height: 100vh;
+  margin: 0 !important;
+}
+
+.dashboards-col {
+  background-color: $grey;
+}
