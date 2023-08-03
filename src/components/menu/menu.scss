@@ -3,6 +3,8 @@ $yellow: #FFC300;
 $grey: #f0f0f0;
 
 .menu {
+    background-color: $blue;
+    color: white;
     img {
         margin: 14% 0;
         position: relative;
@@ -10,5 +12,4 @@ $grey: #f0f0f0;
         width: 50%;
         filter: contrast(200%) saturate(0%) brightness(1000%);
     }
-    background-color: $blue;
 }
