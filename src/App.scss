@@ -3,7 +3,28 @@
 $blue: #1759FF;
 $yellow:#FFC300;
 $grey: #f0f0f0;
+
+@font-face {
+  font-family: 'FenotypeBold';
+  src: url('./assets/fonts/FenotypePraktikaBold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'FenotypeExtraBold';
+  src: url('./assets/fonts/FenotypePraktikaExtraBold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'FenotypeExtraBoldCondensed';
+  src: url('./assets/fonts/FenotypePraktikaExtraBoldCondensed.otf') format('opentype');
+}
+
 /* #endregion */
+
+
+*{
+  font-family: "FenotypeBold";
+}
 
 /* #region debug */
 .coluna {
