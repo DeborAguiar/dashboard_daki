@@ -5,10 +5,10 @@ import SecondTab from '../secondTab';
 function Carousel() {
     /* criacao do menu para mobile pode ser feito com o offcanva do bootstrap */
     return (
-        <div>
+        <div id="dashboards">
             <h3 className="pt-5">Análises</h3>
-            <div id="dashboards" className="carousel slide h-100 pt-3 pt-md-4">
-                <div className="carousel-inner h-100">
+            <div id="dashboards" className="carousel slide pt-3 pt-md-4">
+                <div className="carousel-inner">
                     <FirstTab />
                     <SecondTab />
                 </div>
