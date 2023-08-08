@@ -9,13 +9,7 @@ function FirstTab() {
     /* (IMPRESSIONS, CLICKS) , (GMV_USD, SALES_USD),  */
 
     const [data, setData] = useState([])
-    const [consolidados, setConsolidados] = useState({
-        "Vendas": 0,
-        "Unidades Vendidas": 0,
-        "Preço Médio": 0,
-        "Clientes": 0,
-        "Clientes Novos": 0,
-    })
+    const [consolidados, setConsolidados] = useState({})
     const [charts, setCharts] = useState({
         /* (ORDERS, DAY_OF_WEEK) */
         weekSales: {
@@ -59,6 +53,7 @@ function FirstTab() {
     }, [])
 
     useEffect(() => {
+        buildConsolidados();
         organizeData();
     }, [data]);
 
@@ -76,6 +71,23 @@ function FirstTab() {
             console.error('Erro ao buscar o arquivo CSV:', error);
         }
     };
+
+    function buildConsolidados() {
+        let c = {};
+
+        if (data[0]) {
+            data.forEach(d => {
+                Object.entries(d).forEach(([key, value]) => {
+                    if (!isNaN(value) && value !== '') {
+                        c[key] = (c[key] || 0) + parseFloat(value);
+                    }
+                });
+            });
+        }
+
+        console.log("🚀 ~ file: index.js:77 ~ buildConsolidados ~ c:", c);
+        setConsolidados(c)
+    }
 
     function organizeData() {
         let days = {
@@ -97,16 +109,16 @@ function FirstTab() {
         });
 
         for (let reg of data) {
-            if (reg.DAY_OF_WEEK && reg.ORDERS != '') {
+            if (reg.DAY_OF_WEEK && reg.ORDERS !== '') {
                 days[reg.DAY_OF_WEEK] += parseInt(reg.ORDERS)
             }
-            if (reg.MALE_ORDERS && reg.MALE_ORDERS != '') {
+            if (reg.MALE_ORDERS && reg.MALE_ORDERS !== '') {
                 genderValues[0] += parseInt(reg.MALE_ORDERS)
             }
-            if (reg.FEMALE_ORDERS && reg.FEMALE_ORDERS != '') {
+            if (reg.FEMALE_ORDERS && reg.FEMALE_ORDERS !== '') {
                 genderValues[1] += parseInt(reg.FEMALE_ORDERS)
             }
-            if (reg.BRAND_NAME && reg.ORDERS != '') {
+            if (reg.BRAND_NAME && reg.ORDERS !== '') {
                 brands[reg.BRAND_NAME] += parseInt(reg.ORDERS)
             }
         }
@@ -156,96 +168,98 @@ function FirstTab() {
                     <a className="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Consolidados</a>
                 </li>
                 <li className="nav-item" role="presentation">
-                    <a className="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Evoluçao Semanal</a>
+                    <a className="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Evolução Semanal</a>
                 </li>
                 <li className="nav-item" role="presentation">
                     <a className="nav-link" id="tab3-tab" data-bs-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Week Over Week</a>
                 </li>
             </ul>
-            <div className="tab-content mt-3" id="myTabContent">
-                <div className="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-                    <div className="row row-cols-1 row-cols-lg-3 g-4 p-3">
+            <div className="tab-content mt-3 p-3" id="myTabContent">
+                <div className="tab-pane fade text-center" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                    <div className="row mb-4">
                         <div className="col">
-                            <div className="p-3 charts">Row column</div>
+                            <div className="p-1 charts">
+                                <span>Cockpit de Vendas</span>
+                            </div>
                         </div>
-                        <div className="col">
-                            <div className="p-3 charts">Row column</div>
-                        </div>
-                        <div className="col">
-                            <div className="p-3 charts">Row column</div>
-                        </div>
+                    </div>
+                    <div className="row mb-4 row-cols-1 row-cols-lg-3 g-4 ">
                         <div className="col">
                             <div className="p-3 charts">
-                                <h5>Vendas x Dia da Semana</h5>
-                                <Bar
-                                    options={{
-                                        scales: {
-                                            y: {
-                                                min: 1000,
-                                                max: 6000,
-                                            },
-                                        },
-                                        plugins: {
-                                            legend: {
-                                                display: false
-                                            },
-                                        }
-                                    }}
-                                    data={charts.weekSales} />
+                                <h4>Vendas</h4>
+                                <h2>
+                                    {(() => '$ ' + (consolidados.SALES_USD / 1000).toFixed(1) + 'K')()}
+                                </h2>
                             </div>
                         </div>
                         <div className="col">
                             <div className="p-3 charts">
-                                <h5>Vendas por Gênero</h5>
-                                <Doughnut data={charts.genderComp} />
+                                <h4>Quantidade Vendida</h4>
+                                <h2>
+                                    {(() => (consolidados.QUANTITY_SOLD / 1000).toFixed(1) + 'K')()}
+                                </h2>
                             </div>
                         </div>
                         <div className="col">
                             <div className="p-3 charts">
-                                <h5>Vendas Por Marca</h5>
-                                <Line
-                                    options={{
-                                        scales: {
-                                            x: {
-                                                ticks: {
-                                                    callback(value) {
-                                                        let label = this.getLabelForValue(value);
-                                                        return label.substring(0, 4) + "..."
-                                                    },
-                                                }
-                                            }
-                                        },
-                                        plugins: {
-                                            legend: {
-                                                display: false
-                                            },
-                                        }
-                                    }}
-                                    data={charts.brandsSum} />
+                                <h4>Preço Médio</h4>
+                                <h2>
+                                    {(() => '$ ' + ((consolidados.GMV_LC / consolidados.QUANTITY_SOLD)).toFixed(1))()}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row mb-4 row-cols-1 row-cols-lg-2 g-4">
+                        <div className="col">
+                            <div className="p-3 charts">
+                                <h4>Clientes</h4>
+                                <h2>
+                                    {(() => (consolidados.CUSTOMERS?.toLocaleString()))()}
+                                </h2>
                             </div>
                         </div>
                         <div className="col">
-                            <div className="p-3 charts">Row column</div>
-                        </div>
-                        <div className="col">
-                            <div className="p-3 charts">Row column</div>
-                        </div>
-                        <div className="col">
-                            <div className="p-3 charts">Row column</div>
-                        </div>
-                        <div className="col">
-                            <div className="p-3 charts">Row column</div>
+                            <div className="p-3 charts">
+                                <h4>Clientes Novos</h4>
+                                <h2>
+                                    {(() => (consolidados.NEW_CUSTOMERS?.toLocaleString()))()}
+                                </h2>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                    <h2>Conteúdo da Aba 2</h2>
-                    <p>Este é o conteúdo da Aba 2.</p>
+            </div>
+            <div className="tab-pane fade  show active text-center" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                <div className="row mb-4 row-cols-1 row-cols-lg-3 g-4 ">
+                    <div className="col">
+                        <div className="p-3 charts">
+                            <h4>Vendas</h4>
+                            <h2>
+                                {(() => '$ ' + (consolidados.SALES_USD / 1000).toFixed(1) + 'K')()}
+                            </h2>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="p-3 charts">
+                            <h4>Quantidade Vendida</h4>
+                            <h2>
+                                {(() => (consolidados.QUANTITY_SOLD / 1000).toFixed(1) + 'K')()}
+                            </h2>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="p-3 charts">
+                            <h4>Preço Médio</h4>
+                            <h2>
+                                {(() => '$ ' + ((consolidados.GMV_LC / consolidados.QUANTITY_SOLD)).toFixed(1))()}
+                            </h2>
+                        </div>
+                    </div>
                 </div>
-                <div className="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
-                    <h2>Conteúdo da Aba 3</h2>
-                    <p>Este é o conteúdo da Aba 3.</p>
-                </div>
+            </div>
+            <div className="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+                <h2>Conteúdo da Aba 3</h2>
+                <p>Este é o conteúdo da Aba 3.</p>
             </div>
         </div>
     )
