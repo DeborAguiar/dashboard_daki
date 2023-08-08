@@ -10,12 +10,18 @@ import {
     Title,
     Tooltip,
     Legend,
+    ArcElement,
+    PointElement,
+    LineElement,
 } from 'chart.js';
 
 Chart.register(
     CategoryScale,
     LinearScale,
     BarElement,
+    ArcElement,
+    PointElement,
+    LineElement,
     Title,
     Tooltip,
     Legend
