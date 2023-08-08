@@ -1,12 +1,9 @@
-import Papa from 'papaparse';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import file from "../../data/product_data.csv"
 import { Line } from 'react-chartjs-2';
 
-function FirstTab() {
+function FirstTab({csvData}) {
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState(csvData)
     const [consolidados, setConsolidados] = useState({})
     const [weekEvolutionSelects, setWESelects] = useState({
         'Mon': {},
@@ -55,38 +52,26 @@ function FirstTab() {
     })
 
     useEffect(() => {
-        fetchCSVData();
-    }, [])
-
-    useEffect(() => {
-        buildConsolidados();
-        buildSemanalEv();
+        console.log("🚀 ~ file: index.js:56 ~ useEffect ~ data:", data)
+        if (data != undefined) {
+            buildConsolidados();
+            buildSemanalEv();
+        }
     }, [data]);
 
     useEffect(() => {
-        changeSelect('SALES_USD', 0);
-        changeSelect('QUANTITY_SOLD', 1);
-        buildWeeksObject();
+        if (data != undefined) {
+            changeSelect('SALES_USD', 0);
+            changeSelect('QUANTITY_SOLD', 1);
+            buildWeeksObject();
+        }
     }, [weekEvolutionSelects])
 
     useEffect(() => {
-        chooseWow('SALES_LC');
-    }, [weeksObject])
-
-    const fetchCSVData = async () => {
-        try {
-            const response = await axios.get(file);
-            const csvData = response.data;
-            Papa.parse(csvData, {
-                complete: (result) => {
-                    setData(result.data);
-                },
-                header: true
-            });
-        } catch (error) {
-            console.error('Erro ao buscar o arquivo CSV:', error);
+        if (data != undefined) {
+            chooseWow('SALES_LC');
         }
-    };
+    }, [weeksObject])
 
     function buildConsolidados() {
         let c = {

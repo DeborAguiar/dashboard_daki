@@ -1,21 +1,51 @@
 import './carousel.scss';
+import Papa from 'papaparse';
+import axios from 'axios';
+import product_data from "../../data/product_data.csv"
 import FirstTab from '../firstTab';
 import SecondTab from '../secondTab';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 function Carousel() {
-    /* criacao do menu para mobile pode ser feito com o offcanva do bootstrap */
+    const [data, setData] = useState()
+
+    useEffect(() => {
+        fetchCSVData();
+    }, [])
+
+    const fetchCSVData = async () => {
+        try {
+            const response = await axios.get(product_data);
+            const csvData = response.data;
+            Papa.parse(csvData, {
+                complete: (result) => {
+                    setData(result.data);
+                },
+                header: true
+            });
+        } catch (error) {
+            console.error('Erro ao buscar o arquivo CSV:', error);
+        } finally {
+            console.log(data);
+        }
+    };
+
     return (
         <div id="dash">
             <h3 className="pt-5">Análises</h3>
             <div id="dashboards" className="carousel slide pt-3 pt-md-4">
                 <div className="carousel-inner">
-                    <FirstTab />
-                    <SecondTab />
+                    {data && (
+                        <>
+                            <FirstTab csvData={data} />
+                            <SecondTab csvData={data} />
+                        </>
+                    )}
                 </div>
             </div>
         </div>
     )
-
 }
 
 export default Carousel;
