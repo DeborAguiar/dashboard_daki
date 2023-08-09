@@ -9,7 +9,7 @@ function Menu() {
                 <h5> Main Menu</h5>
                 <span style={{ margin: "1vw" }} data-bs-target="#dashboards" data-bs-slide-to="0" className="active" aria-current="true">Consolidados / WoW</span>
                 <br />
-                <span style={{ margin: "1vw" }} data-bs-target="#dashboards" data-bs-slide-to="1" aria-label="Slide 2">Heat Map</span>
+                <span style={{ margin: "1vw" }} data-bs-target="#dashboards" data-bs-slide-to="1" aria-label="Slide 2">Heatmap</span>
             </div>
             <div style={{ height: "10vh", width: "30px" }}></div>
             <div style={{ marginLeft: "1vw" }}>

@@ -26,8 +26,6 @@ function Carousel() {
             });
         } catch (error) {
             console.error('Erro ao buscar o arquivo CSV:', error);
-        } finally {
-            console.log(data);
         }
     };
 

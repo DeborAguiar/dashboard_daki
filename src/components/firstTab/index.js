@@ -7,7 +7,6 @@ function FirstTab({csvData}) {
     const [consolidados, setConsolidados] = useState({})
     const [weekEvolutionSelects, setWESelects] = useState({
         'Mon': {},
-
         'Tue': {},
         'Wed': {},
         'Thu': {},
@@ -52,7 +51,6 @@ function FirstTab({csvData}) {
     })
 
     useEffect(() => {
-        console.log("🚀 ~ file: index.js:56 ~ useEffect ~ data:", data)
         if (data != undefined) {
             buildConsolidados();
             buildSemanalEv();
