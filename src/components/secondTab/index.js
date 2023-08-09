@@ -3,7 +3,7 @@ import { ResponsiveHeatMap } from '@nivo/heatmap'
 import Papa from 'papaparse';
 import axios from 'axios';
 import categoryDataCSV from "../../data/category_data.csv";
-import { Pie, Radar } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
 
 function SecondTab({ ProductData }) {
 
@@ -29,8 +29,8 @@ function SecondTab({ ProductData }) {
         if (
             categoryData &&
             heatmap[0] &&
-            mktShareWeek[1] &&
-            mktShareWeek[1] / mktShareWeek[1] == 1) {
+            mktShareTotal[1] &&
+            mktShareWeek[3] / mktShareWeek[3] == 1) {
             setReady(true)
         }
     }, [heatmap, categoryData, mktShareTotal, mktShareWeek])
@@ -125,11 +125,13 @@ function SecondTab({ ProductData }) {
                 const week = getWeekNumber(new Date(product.DATE));
                 const categorySales = product.SALES_USD ? parseFloat(product.SALES_USD) : 0;
 
-                if (!weeklySales[week]) {
-                    weeklySales[week] = 0;
-                }
+                if (week % 3 == 0) {
+                    if (!weeklySales[week]) {
+                        weeklySales[week] = 0;
+                    }
 
-                weeklySales[week] += categorySales;
+                    weeklySales[week] += categorySales;
+                }
             }
         });
 
@@ -139,11 +141,13 @@ function SecondTab({ ProductData }) {
             const week = getWeekNumber(new Date(category.DATE)); // Use a mesma função para categoryData
             const categorySales = category.SALES_USD ? parseFloat(category.SALES_USD) : 0;
 
-            if (!weeklyTotalSales[week]) {
-                weeklyTotalSales[week] = 0;
-            }
+            if (week % 3 == 0) {
+                if (!weeklyTotalSales[week]) {
+                    weeklyTotalSales[week] = 0;
+                }
 
-            weeklyTotalSales[week] += categorySales;
+                weeklyTotalSales[week] += categorySales;
+            }
         });
 
         // Calcula o market share semanal da empresa para cada categoria
@@ -236,12 +240,12 @@ function SecondTab({ ProductData }) {
                                 <Pie
                                     style={{ maxHeight: "60vh" }}
                                     data={{
-                                        labels: ['Empresa', 'Outros'],
+                                        labels: ['Empresa (%)', 'Outros (%)'],
                                         datasets: [
                                             {
                                                 data: [mktShareTotal, 100 - mktShareTotal],
-                                                backgroundColor: ['#36A2EB', '#FFCE56'],
-                                                hoverBackgroundColor: ['#36A2EB', '#FFCE56'],
+                                                backgroundColor: ['rgba(255, 195, 0, 0.2)', 'rgba(23, 89, 255, 0.2)'],
+                                                borderColor: ['rgba(255, 195, 0, 0.4)', 'rgba(23, 89, 255, 0.4)'],
                                             },
                                         ],
                                     }}
@@ -249,16 +253,15 @@ function SecondTab({ ProductData }) {
                             </div>
                             <div className='col-md-6 px-3 order-1' >
                                 <h5> Por Semana</h5>
-                                <Radar
+                                <Bar
                                     style={{ maxHeight: "60vh" }}
                                     data={{
                                         labels: Object.keys(mktShareWeek),
                                         datasets: [
                                             {
                                                 data: Object.values(mktShareWeek),
-
-                                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                                borderColor: 'rgba(255, 99, 132, 1)',
+                                                backgroundColor: ' rgba(255, 195, 0, 0.2)',
+                                                borderColor: 'rgba(255, 195, 0, 1)',
                                                 borderWidth: 1,
                                             },
                                         ],
