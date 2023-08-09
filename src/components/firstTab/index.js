@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 
-function FirstTab({csvData}) {
+function FirstTab({ csvData }) {
 
     const [data, setData] = useState(csvData)
     const [consolidados, setConsolidados] = useState()
@@ -61,8 +61,8 @@ function FirstTab({csvData}) {
         }
     }, [data]);
 
-    useEffect(()=>{
-        if(consolidados){
+    useEffect(() => {
+        if (consolidados) {
             setReady(true)
         }
     }, [consolidados])
@@ -206,7 +206,7 @@ function FirstTab({csvData}) {
     }
 
     return (
-        <div className="carousel-item  active">
+        <div className="carousel-item ">
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
                     <a className="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Consolidados</a>
@@ -223,31 +223,31 @@ function FirstTab({csvData}) {
                     <div className="row mb-4 row-cols-1 row-cols-lg-3 g-4 ">
                         <div className="col">
                             <div className="p-3 charts">
-                                <h4 class="card-title placeholder-wave">
-                                    <span class="placeholder col-6 bg-secondary"></span>
+                                <h4 className="card-title placeholder-wave">
+                                    <span className="placeholder col-6 bg-secondary"></span>
                                 </h4>
-                                <h2 class="card-title placeholder-wave">
-                                    <span class="placeholder col-3 bg-secondary "></span>
+                                <h2 className="card-title placeholder-wave">
+                                    <span className="placeholder col-3 bg-secondary "></span>
                                 </h2>
                             </div>
                         </div>
                         <div className="col">
                             <div className="p-3 charts">
-                                <h4 class="card-title placeholder-wave">
-                                    <span class="placeholder col-6 bg-secondary "></span>
+                                <h4 className="card-title placeholder-wave">
+                                    <span className="placeholder col-6 bg-secondary "></span>
                                 </h4>
-                                <h2 class="card-title placeholder-wave">
-                                    <span class="placeholder col-3 bg-secondary "></span>
+                                <h2 className="card-title placeholder-wave">
+                                    <span className="placeholder col-3 bg-secondary "></span>
                                 </h2>
                             </div>
                         </div>
                         <div className="col">
                             <div className="p-3 charts">
-                                <h4 class="card-title placeholder-wave">
-                                    <span class="placeholder col-6 bg-secondary "></span>
+                                <h4 className="card-title placeholder-wave">
+                                    <span className="placeholder col-6 bg-secondary "></span>
                                 </h4>
-                                <h2 class="card-title placeholder-wave">
-                                    <span class="placeholder col-3 bg-secondary "></span>
+                                <h2 className="card-title placeholder-wave">
+                                    <span className="placeholder col-3 bg-secondary "></span>
                                 </h2>
                             </div>
                         </div>
@@ -255,21 +255,21 @@ function FirstTab({csvData}) {
                     <div className="row mb-4 row-cols-1 row-cols-lg-2 g-4">
                         <div className="col">
                             <div className="p-3 charts">
-                                <h4 class="card-title placeholder-wave">
-                                    <span class="placeholder col-6 bg-secondary "></span>
+                                <h4 className="card-title placeholder-wave">
+                                    <span className="placeholder col-6 bg-secondary "></span>
                                 </h4>
-                                <h2 class="card-title placeholder-wave">
-                                    <span class="placeholder col-3 bg-secondary "></span>
+                                <h2 className="card-title placeholder-wave">
+                                    <span className="placeholder col-3 bg-secondary "></span>
                                 </h2>
                             </div>
                         </div>
                         <div className="col">
                             <div className="p-3 charts">
-                                <h4 class="card-title placeholder-wave">
-                                    <span class="placeholder col-6 bg-secondary "></span>
+                                <h4 className="card-title placeholder-wave">
+                                    <span className="placeholder col-6 bg-secondary "></span>
                                 </h4>
-                                <h2 class="card-title placeholder-wave">
-                                    <span class="placeholder col-3 bg-secondary "></span>
+                                <h2 className="card-title placeholder-wave">
+                                    <span className="placeholder col-3 bg-secondary "></span>
                                 </h2>
                             </div>
                         </div>

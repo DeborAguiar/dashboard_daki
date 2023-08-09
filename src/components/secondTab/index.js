@@ -162,7 +162,7 @@ function SecondTab({ ProductData }) {
 
 
     return (
-        <div className="carousel-item text-center">
+        <div className="carousel-item text-center active ">
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
                     <a className="nav-link active" id="tab4-tab" data-bs-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="true">Heatmap</a>
@@ -171,11 +171,11 @@ function SecondTab({ ProductData }) {
                     <a className="nav-link" id="tab5-tab" data-bs-toggle="tab" href="#tab5" role="tab" aria-controls="tab5" aria-selected="false">Market Share</a>
                 </li>
             </ul>
-            <div className="tab-content mt-3 p-3 text-center">
-                <div className="tab-pane fade show active " id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+            <div className="tab-content mt-3 p-3 text-center ">
+                <div className="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
                     <div className="p-3 charts">
                         <div className="row p-3">
-                            <div className="col" style={{ height: "60vh" }}>
+                            <div className="col" style={{ height: "50vh" }}>
                                 <ResponsiveHeatMap
                                     data={heatmap}
                                     margin={{ top: 60, right: 90, bottom: 60, left: 90 }}
@@ -216,9 +216,9 @@ function SecondTab({ ProductData }) {
                         </div>
                     </div>
                 </div>
-                <div className="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
+                <div className="tab-pane fade show active" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
                     <div className="p-3 charts">
-                        {!ready && <div className='row align-items-center' style={{ height: "60vh" }}>
+                        {!ready && <div className='row align-items-center'>
                             <div className='col px-3 order-0' >
                                 <div className="spinner-grow text-light" role="status" style={{ height: "50vh", width: "50vh" }}>
                                     <span className="visually-hidden">Loading...</span>
@@ -231,8 +231,10 @@ function SecondTab({ ProductData }) {
                             </div>
                         </div>}
                         {ready && <div className='row row-cols-1 row-cols-md-2 align-items-center'>
-                            <div className='col-md-6 px-3 order-0' style={{ maxHeight: "60vh" }}>
+                            <div className='col-md-6 px-3 order-0'>
+                                <h5> Por Categoria</h5>
                                 <Pie
+                                    style={{ maxHeight: "60vh" }}
                                     data={{
                                         labels: ['Empresa', 'Outros'],
                                         datasets: [
@@ -245,16 +247,19 @@ function SecondTab({ ProductData }) {
                                     }}
                                 />
                             </div>
-                            <div className='col-md-6 px-3 order-1' style={{ maxHeight: "60vh" }}>
+                            <div className='col-md-6 px-3 order-1' >
+                                <h5> Por Semana</h5>
                                 <Radar
+                                    style={{ maxHeight: "60vh" }}
                                     data={{
                                         labels: Object.keys(mktShareWeek),
                                         datasets: [
                                             {
                                                 data: Object.values(mktShareWeek),
-                                                backgroundColor: '#FFCE56',
-                                                hoverBackgroundColor: '#FFCE56',
-                                                tension: 0.4
+
+                                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                                borderColor: 'rgba(255, 99, 132, 1)',
+                                                borderWidth: 1,
                                             },
                                         ],
                                     }}

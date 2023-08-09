@@ -30,7 +30,7 @@ function Carousel() {
     };
 
     return (
-        <div id="dash">
+        <div id="dash" style={{ maxHeight: "100vh" }}>
             <h3 className="pt-5">Análises</h3>
             <div id="dashboards" className="carousel slide pt-3 pt-md-4">
                 <div className="carousel-inner">
