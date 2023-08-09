@@ -166,7 +166,7 @@ function SecondTab({ ProductData }) {
 
 
     return (
-        <div className="carousel-item text-center active ">
+        <div className="carousel-item text-center">
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
                     <a className="nav-link active" id="tab4-tab" data-bs-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="true">Heatmap</a>
@@ -176,7 +176,7 @@ function SecondTab({ ProductData }) {
                 </li>
             </ul>
             <div className="tab-content mt-3 p-3 text-center ">
-                <div className="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+                <div className="tab-pane fade show active" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
                     <div className="p-3 charts">
                         <div className="row p-3">
                             <div className="col" style={{ height: "50vh" }}>
@@ -220,7 +220,7 @@ function SecondTab({ ProductData }) {
                         </div>
                     </div>
                 </div>
-                <div className="tab-pane fade show active" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
+                <div className="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
                     <div className="p-3 charts">
                         {!ready && <div className='row align-items-center'>
                             <div className='col px-3 order-0' >
@@ -235,8 +235,10 @@ function SecondTab({ ProductData }) {
                             </div>
                         </div>}
                         {ready && <div className='row row-cols-1 row-cols-md-2 align-items-center'>
-                            <div className='col-md-6 px-3 order-0'>
-                                <h5> Por Categoria</h5>
+                            <div className='col-md-6 fs-4 order-0 mt-2'>
+                                <span> Por Categoria</span>
+                            </div>
+                            <div className='col-md-6 px-3 order-2 order-md-3'>
                                 <Pie
                                     style={{ maxHeight: "60vh" }}
                                     data={{
@@ -251,8 +253,10 @@ function SecondTab({ ProductData }) {
                                     }}
                                 />
                             </div>
-                            <div className='col-md-6 px-3 order-1' >
-                                <h5> Por Semana</h5>
+                            <div className='col-md-6 fs-4 order-3 order-md-2'>
+                                <span> Por Semana</span>
+                            </div>
+                            <div className='col-md-6 px-3 order-5' >
                                 <Bar
                                     style={{ maxHeight: "60vh" }}
                                     data={{

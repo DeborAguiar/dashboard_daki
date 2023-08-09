@@ -206,7 +206,7 @@ function FirstTab({ csvData }) {
     }
 
     return (
-        <div className="carousel-item ">
+        <div className="carousel-item active">
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
                     <a className="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Consolidados</a>

@@ -7,9 +7,9 @@ function Menu() {
             <div style={{ height: "10vh", width: "30px" }}></div>
             <div style={{ marginLeft: "1vw" }}>
                 <h5> Main Menu</h5>
-                <span style={{ margin: "1vw" }} data-bs-target="#dashboards" data-bs-slide-to="0" className="active" aria-current="true">Consolidados / WoW</span>
+                <span style={{ margin: "1vw" }} data-bs-target="#dashboards" data-bs-slide-to="0" className="active" aria-current="true">Dash 1</span>
                 <br />
-                <span style={{ margin: "1vw" }} data-bs-target="#dashboards" data-bs-slide-to="1" aria-label="Slide 2">Heatmap</span>
+                <span style={{ margin: "1vw" }} data-bs-target="#dashboards" data-bs-slide-to="1" aria-label="Slide 2">Dash 2</span>
             </div>
             <div style={{ height: "10vh", width: "30px" }}></div>
             <div style={{ marginLeft: "1vw" }}>
