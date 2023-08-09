@@ -37,7 +37,7 @@ function Carousel() {
                     {data && (
                         <>
                             <FirstTab csvData={data} />
-                            <SecondTab csvData={data} />
+                            <SecondTab ProductData={data} />
                         </>
                     )}
                 </div>

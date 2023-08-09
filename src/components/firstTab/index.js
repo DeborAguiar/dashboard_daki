@@ -23,12 +23,14 @@ function FirstTab({csvData}) {
                     backgroundColor: ["rgb(255, 195, 0, 0.2)"],
                     borderColor: ["rgb(255, 195, 0)"],
                     borderWidth: 1,
+                    tension: 0.4
                 },
                 {
                     data: [],
                     backgroundColor: ['rgba(23, 89, 255, 0.2)'],
                     borderColor: ['rgba(23, 89, 255)'],
                     borderWidth: 1,
+                    tension: 0.4
                 },
             ],
         },
@@ -40,6 +42,7 @@ function FirstTab({csvData}) {
                     backgroundColor: ["rgb(255, 195, 0, 0.2)"],
                     borderColor: ["rgb(255, 195, 0)"],
                     borderWidth: 1,
+                    tension: 0.4
                 },
             ],
         }
@@ -196,7 +199,7 @@ function FirstTab({csvData}) {
     }
 
     return (
-        <div className="carousel-item active">
+        <div className="carousel-item">
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
                     <a className="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Consolidados</a>
