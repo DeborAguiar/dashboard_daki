@@ -63,7 +63,7 @@ function SecondTab({ csvData }) {
                 <div className="tab-pane fade show active" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
                     <div className="p-3 charts">
                         <div className="row p-3">
-                            <div className="col" style={{ height: "70vh" }}>
+                            <div className="col" style={{ height: "60vh" }}>
                                 <ResponsiveHeatMap
                                     data={heatmap
                                     }
