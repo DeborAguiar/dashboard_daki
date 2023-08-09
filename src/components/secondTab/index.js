@@ -162,7 +162,7 @@ function SecondTab({ ProductData }) {
 
 
     return (
-        <div className="carousel-item active text-center">
+        <div className="carousel-item text-center">
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
                     <a className="nav-link active" id="tab4-tab" data-bs-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="true">Heatmap</a>
@@ -220,13 +220,13 @@ function SecondTab({ ProductData }) {
                     <div className="p-3 charts">
                         {!ready && <div className='row align-items-center' style={{ height: "60vh" }}>
                             <div className='col px-3 order-0' >
-                                <div class="spinner-grow text-light" role="status" style={{ height: "50vh", width: "50vh" }}>
-                                    <span class="visually-hidden">Loading...</span>
+                                <div className="spinner-grow text-light" role="status" style={{ height: "50vh", width: "50vh" }}>
+                                    <span className="visually-hidden">Loading...</span>
                                 </div>
                             </div>
                             <div className='col px-3 order-0' >
-                                <div class="spinner-grow text-light" role="status" style={{ height: "50vh", width: "50vh" }}>
-                                    <span class="visually-hidden">Loading...</span>
+                                <div className="spinner-grow text-light" role="status" style={{ height: "50vh", width: "50vh" }}>
+                                    <span className="visually-hidden">Loading...</span>
                                 </div>
                             </div>
                         </div>}

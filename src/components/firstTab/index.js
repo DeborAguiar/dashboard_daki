@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 function FirstTab({csvData}) {
 
     const [data, setData] = useState(csvData)
-    const [consolidados, setConsolidados] = useState({})
+    const [consolidados, setConsolidados] = useState()
     const [weekEvolutionSelects, setWESelects] = useState({
         'Mon': {},
         'Tue': {},
@@ -52,6 +52,7 @@ function FirstTab({csvData}) {
         weekEv: [`SALES_USD`, `QUANTITY_SOLD`],
         wOw: 'CLICKS'
     })
+    const [ready, setReady] = useState(false)
 
     useEffect(() => {
         if (data != undefined) {
@@ -59,6 +60,12 @@ function FirstTab({csvData}) {
             buildSemanalEv();
         }
     }, [data]);
+
+    useEffect(()=>{
+        if(consolidados){
+            setReady(true)
+        }
+    }, [consolidados])
 
     useEffect(() => {
         if (data != undefined) {
@@ -84,16 +91,16 @@ function FirstTab({csvData}) {
         };
         if (data[0]) {
             data.forEach(d => {
-                if (!isNaN(d.SALES_USD) && d.SALES_USD !== '')
-                    c.SALES_USD += parseFloat(d.SALES_USD)
-                if (!isNaN(d.QUANTITY_SOLD) && d.QUANTITY_SOLD !== '')
-                    c.QUANTITY_SOLD += parseFloat(d.QUANTITY_SOLD)
-                if (!isNaN(d.GMV_LC) && d.GMV_LC !== '')
-                    c.GMV_LC += parseFloat(d.GMV_LC)
-                if (!isNaN(d.CUSTOMERS) && d.CUSTOMERS !== '')
-                    c.CUSTOMERS += parseFloat(d.CUSTOMERS)
-                if (!isNaN(d.NEW_CUSTOMERS) && d.NEW_CUSTOMERS !== '')
-                    c.NEW_CUSTOMERS += parseFloat(d.NEW_CUSTOMERS)
+                if (!isNaN(d?.SALES_USD) && d?.SALES_USD !== '')
+                    c.SALES_USD += parseFloat(d?.SALES_USD)
+                if (!isNaN(d?.QUANTITY_SOLD) && d?.QUANTITY_SOLD !== '')
+                    c.QUANTITY_SOLD += parseFloat(d?.QUANTITY_SOLD)
+                if (!isNaN(d?.GMV_LC) && d?.GMV_LC !== '')
+                    c.GMV_LC += parseFloat(d?.GMV_LC)
+                if (!isNaN(d?.CUSTOMERS) && d?.CUSTOMERS !== '')
+                    c.CUSTOMERS += parseFloat(d?.CUSTOMERS)
+                if (!isNaN(d?.NEW_CUSTOMERS) && d?.NEW_CUSTOMERS !== '')
+                    c.NEW_CUSTOMERS += parseFloat(d?.NEW_CUSTOMERS)
             });
         }
         setConsolidados(c)
@@ -199,7 +206,7 @@ function FirstTab({csvData}) {
     }
 
     return (
-        <div className="carousel-item">
+        <div className="carousel-item  active">
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
                     <a className="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Consolidados</a>
@@ -212,13 +219,69 @@ function FirstTab({csvData}) {
                 </li>
             </ul>
             <div className="tab-content mt-3 p-3 text-center">
-                <div className="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                {!ready && <div className="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                    <div className="row mb-4 row-cols-1 row-cols-lg-3 g-4 ">
+                        <div className="col">
+                            <div className="p-3 charts">
+                                <h4 class="card-title placeholder-wave">
+                                    <span class="placeholder col-6 bg-secondary"></span>
+                                </h4>
+                                <h2 class="card-title placeholder-wave">
+                                    <span class="placeholder col-3 bg-secondary "></span>
+                                </h2>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="p-3 charts">
+                                <h4 class="card-title placeholder-wave">
+                                    <span class="placeholder col-6 bg-secondary "></span>
+                                </h4>
+                                <h2 class="card-title placeholder-wave">
+                                    <span class="placeholder col-3 bg-secondary "></span>
+                                </h2>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="p-3 charts">
+                                <h4 class="card-title placeholder-wave">
+                                    <span class="placeholder col-6 bg-secondary "></span>
+                                </h4>
+                                <h2 class="card-title placeholder-wave">
+                                    <span class="placeholder col-3 bg-secondary "></span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row mb-4 row-cols-1 row-cols-lg-2 g-4">
+                        <div className="col">
+                            <div className="p-3 charts">
+                                <h4 class="card-title placeholder-wave">
+                                    <span class="placeholder col-6 bg-secondary "></span>
+                                </h4>
+                                <h2 class="card-title placeholder-wave">
+                                    <span class="placeholder col-3 bg-secondary "></span>
+                                </h2>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="p-3 charts">
+                                <h4 class="card-title placeholder-wave">
+                                    <span class="placeholder col-6 bg-secondary "></span>
+                                </h4>
+                                <h2 class="card-title placeholder-wave">
+                                    <span class="placeholder col-3 bg-secondary "></span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>}
+                {ready && <div className="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
                     <div className="row mb-4 row-cols-1 row-cols-lg-3 g-4 ">
                         <div className="col">
                             <div className="p-3 charts">
                                 <h4>Vendas</h4>
                                 <h2>
-                                    {(() => '$ ' + (consolidados.SALES_USD / 1000).toFixed(1) + 'K')()}
+                                    {(() => '$ ' + (consolidados?.SALES_USD / 1000).toFixed(1) + 'K')()}
                                 </h2>
                             </div>
                         </div>
@@ -226,7 +289,7 @@ function FirstTab({csvData}) {
                             <div className="p-3 charts">
                                 <h4>Quantidade Vendida</h4>
                                 <h2>
-                                    {(() => (consolidados.QUANTITY_SOLD / 1000).toFixed(1) + 'K')()}
+                                    {(() => (consolidados?.QUANTITY_SOLD / 1000).toFixed(1) + 'K')()}
                                 </h2>
                             </div>
                         </div>
@@ -257,7 +320,7 @@ function FirstTab({csvData}) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>}
                 <div className="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
                     <div className="p-3 charts">
                         <div className='row row-cols-1 row-cols-md-2 align-items-center'>
