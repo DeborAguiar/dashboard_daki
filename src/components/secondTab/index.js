@@ -167,7 +167,7 @@ function SecondTab({ ProductData }) {
 
     return (
         <div className="carousel-item text-center">
-            <ul className="nav nav-tabs" id="myTab" role="tablist">
+            <ul className="nav nav-tabs" id="myTab2" role="tablist">
                 <li className="nav-item" role="presentation">
                     <a className="nav-link active" id="tab4-tab" data-bs-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="true">Heatmap</a>
                 </li>
