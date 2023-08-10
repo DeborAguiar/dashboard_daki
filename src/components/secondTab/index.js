@@ -283,7 +283,6 @@ function SecondTab({ ProductData }) {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

@@ -5,6 +5,7 @@ $grey: #f0f0f0;
 .menu {
     background-color: $blue;
     color: white;
+
     img {
         margin: 14% 0;
         position: relative;
@@ -12,4 +13,24 @@ $grey: #f0f0f0;
         width: 50%;
         filter: contrast(200%) saturate(0%) brightness(1000%);
     }
+
+    .nav-link {
+        font-size: large;
+
+    }
+    
+    .nav-link:hover {
+        cursor: pointer;
+    }
+    
+    .nav-link:not(.active):hover{
+        color: black;
+    }
+
+    .active {
+        background-color: $yellow;
+        color: $blue;
+        border-radius: 5px;
+    }
+
 }
