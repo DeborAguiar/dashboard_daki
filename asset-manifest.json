@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/dashboard_daki/static/css/main.b5a10af6.css",
+    "main.js": "/dashboard_daki/static/js/main.3f5dbf64.js",
+    "static/js/787.1e10ed45.chunk.js": "/dashboard_daki/static/js/787.1e10ed45.chunk.js",
+    "static/media/category_data.csv": "/dashboard_daki/static/media/category_data.dff45cacb6115433483f.csv",
+    "static/media/product_data.csv": "/dashboard_daki/static/media/product_data.90a9ffebcbc811a2087a.csv",
+    "static/media/FenotypePraktikaExtraBold.otf": "/dashboard_daki/static/media/FenotypePraktikaExtraBold.2ece07af0331a616e94a.otf",
+    "static/media/FenotypePraktikaBold.otf": "/dashboard_daki/static/media/FenotypePraktikaBold.56478a2b19a842ee43b3.otf",
+    "static/media/FenotypePraktikaExtraBoldCondensed.otf": "/dashboard_daki/static/media/FenotypePraktikaExtraBoldCondensed.ff0b7e47158807840d10.otf",
+    "index.html": "/dashboard_daki/index.html",
+    "main.b5a10af6.css.map": "/dashboard_daki/static/css/main.b5a10af6.css.map",
+    "main.3f5dbf64.js.map": "/dashboard_daki/static/js/main.3f5dbf64.js.map",
+    "787.1e10ed45.chunk.js.map": "/dashboard_daki/static/js/787.1e10ed45.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b5a10af6.css",
+    "static/js/main.3f5dbf64.js"
+  ]
+}
